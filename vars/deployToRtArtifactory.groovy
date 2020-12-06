@@ -1,17 +1,20 @@
 #!/usr/bin/env groovy
 
-def call(String uploadPattern, String targetRepo, String artifactoryInstance = "ARTIFACTORY"){
+def call(String uploadPattern, String targetRepo, String props = "", String artifactoryInstance = "ARTIFACTORY"){
 
      script {
 
         def server = Artifactory.server "${artifactoryInstance}"
+
+        props = props + "ProjectID=${params.ProjectID};rev=${commit}"
 
         def uploadSpec =
             """{
                     "files": [
                         {
                             "pattern": \"${uploadPattern}\",
-                            "target": \"${targetRepo}\"
+                            "target": \"${targetRepo}\",
+                            "props" : \"${props}\"
                         }
                     ]
                 }"""
