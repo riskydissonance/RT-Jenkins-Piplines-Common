@@ -7,7 +7,7 @@ def call(String configuration = "Release", String platform = "Any CPU", String s
 
     withSonarQubeEnv(sonarInstance) {
         bat "${sonar_msbuild_location} begin -k:\"${JOB_NAME}\" -d:sonar.host.url=${env.SONAR_HOST_URL}"
-        msbuild(configuration, platform)
+        runMsbuild(configuration, platform)
         bat "${sonar_msbuild_location} end"
     }
 }
