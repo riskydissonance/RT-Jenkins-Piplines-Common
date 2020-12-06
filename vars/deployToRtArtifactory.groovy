@@ -18,6 +18,8 @@ def call(String uploadPattern, String targetRepo, String props = "", String arti
         }
         props += "ProjectID=${params.ProjectID};rev=${commit}"
 
+        targetRepo += System.currentTimeMillis() + "/"
+
         def uploadSpec =
             """{
                     "files": [
