@@ -18,7 +18,9 @@ def call(String uploadPattern, String targetRepo, String props = "", String arti
         }
         props += "ProjectID=${params.ProjectID};rev=${commit}"
 
-        targetRepo += System.currentTimeMillis() + "/"
+
+        def now = new Date()
+        targetRepo += now.format("yyyyMMdd-HH:mm:ss.SSS", TimeZone.getTimeZone('UTC')) + "/"
 
         def uploadSpec =
             """{
