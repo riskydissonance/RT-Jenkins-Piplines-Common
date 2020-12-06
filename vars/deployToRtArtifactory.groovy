@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(String uploadPattern, String targetRepo, String artifactoryInstance = "ARTIFACTORY", ){
+def call(String uploadPattern, String targetRepo, String artifactoryInstance = "ARTIFACTORY"){
 
      script {
 
