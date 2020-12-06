@@ -2,5 +2,14 @@
 
 def call(String glob, String find, String replace){
 
-   echo "TODO find and replace ${find} with ${replace} in ${glob}"
+   new File(".").eachDirRecurse(
+      {
+         dir ->
+            dir.eachFileMatch(glob){
+                  file ->
+                     fileText = file.text;
+                     fileText = fileText.replaceAll(find, replace)
+                     file.write(fileText);
+         }
+      })
 }

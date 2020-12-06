@@ -16,7 +16,7 @@ def call(String uploadPattern, String targetRepo, String props = "", String arti
                 props += ";"
             }
         }
-        props += "ProjectID=${params.ProjectID};rev=${commit}"
+        props += "projectId=${params.projectId};rev=${commit}"
 
 
         def now = new Date()
