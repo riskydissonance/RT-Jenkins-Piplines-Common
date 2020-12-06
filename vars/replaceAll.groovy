@@ -2,7 +2,7 @@
 
 def call(String glob, String find, String replace){
 
-   new File(".").eachDirRecurse(
+   /*new File(".").eachDirRecurse(
       {
          dir ->
             dir.eachFileMatch(glob){
@@ -11,5 +11,6 @@ def call(String glob, String find, String replace){
                      fileText = fileText.replaceAll(find, replace)
                      file.write(fileText);
          }
-      })
+      })*/
+      echo "TODO - file recurse"
 }
