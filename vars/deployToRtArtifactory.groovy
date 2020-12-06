@@ -4,6 +4,10 @@ def call(String uploadPattern, String targetRepo, String props = "", String arti
 
      script {
 
+
+        bat 'git rev-parse HEAD > commit'
+        def commit = readFile('commit').trim()
+
         def server = Artifactory.server "${artifactoryInstance}"
 
         props = props + ";ProjectID=${params.ProjectID};rev=${commit}"
