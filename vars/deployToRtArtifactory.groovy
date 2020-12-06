@@ -10,7 +10,13 @@ def call(String uploadPattern, String targetRepo, String props = "", String arti
 
         def server = Artifactory.server "${artifactoryInstance}"
 
-        props = props + ";ProjectID=${params.ProjectID};rev=${commit}"
+        if(props?.trim())
+        {
+            if(!props.endsWith(";")){
+                props += ";"
+            }
+        }
+        props += "ProjectID=${params.ProjectID};rev=${commit}"
 
         def uploadSpec =
             """{
