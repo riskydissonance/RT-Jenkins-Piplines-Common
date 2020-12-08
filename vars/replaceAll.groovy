@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-@NoCPS
+@NonCPS
 def call(String glob, String find, String replace){
 
    new File(".").eachDirRecurse(
