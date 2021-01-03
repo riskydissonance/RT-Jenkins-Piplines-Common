@@ -6,9 +6,8 @@ def call(String configuration = "Release", String platform = "Any CPU", String t
     def sonar_msbuild_location = tool sonarScannerInstance
 
     withSonarQubeEnv(sonarInstance) {
-        def sonar_token = System.getenv("SONAR_TOKEN")
-        bat "${sonar_msbuild_location}\\SonarScanner.MSBuild.exe begin -k:\"${JOB_NAME}\" -d:sonar.host.url=${env.SONAR_HOST_URL} -d:sonar.login=${sonar_token}"
+        bat "${sonar_msbuild_location}\\SonarScanner.MSBuild.exe begin -k:\"${JOB_NAME}\" -d:sonar.host.url=${env.SONAR_HOST_URL} -d:sonar.login=${env.SONAR_AUTH_TOKEN}"
         runMsbuild(configuration, platform, targetFrameworkVersion)
-        bat "${sonar_msbuild_location}\\SonarScanner.MSBuild.exe end -d:sonar.login=${sonar_token}"
+        bat "${sonar_msbuild_location}\\SonarScanner.MSBuild.exe end -d:sonar.login=${env.SONAR_AUTH_TOKEN}"
     }
 }
